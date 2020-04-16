@@ -67,12 +67,11 @@ public class GenerateTerrain : MonoBehaviour
     void AddDecorations(int selectedBlock, int counter)
     {
         if (selectedBlock == 0) //the block is grass, so add trees and stuff
-        {
-            
-            for(int i = 0; i < Random.Range(0, 4); i++)
+        { 
+            for(int i = 0; i < Random.Range(1, 4); i++)
             {
                 GameObject tree = Instantiate(decorations[0]);
-                tree.transform.position = new Vector3(counter, 1, Random.Range(-6,6));
+                tree.transform.position = new Vector3(counter, 1, Random.Range(-6, 6)); 
                 currentDecorations.Add(tree);
                 tree.transform.SetParent(TerrainBin);
             }
