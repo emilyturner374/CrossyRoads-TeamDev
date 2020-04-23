@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
     //private Animator animator;
     private bool isHopping;
+    public Text countText;
+    private int count;
     private void Start()
     {
         //animator = GetComponent<Animator>();
+        count = 0;
+        SetCountText();
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.W)) //&& !isHopping)
@@ -17,6 +23,8 @@ public class Movement : MonoBehaviour
             //animator.SetTrigger("hop");
             //isHopping = true;
             float zDiff = 0;
+            count++;
+            SetCountText();
             if (transform.position.z % 1 != 0)
             {
                 zDiff = (transform.position.z - Mathf.Round(transform.position.z) - transform.position.z);
@@ -30,6 +38,8 @@ public class Movement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.S)) // && !isHopping)
         {
             MoveCharacter(new Vector3(-1, 0, 0));
+            count--;
+            SetCountText();
         }
         else if (Input.GetKeyDown(KeyCode.D)) // && !isHopping)
         {
@@ -46,5 +56,10 @@ public class Movement : MonoBehaviour
 
     {
         isHopping = false;
+    }
+
+    void SetCountText()
+    {
+        countText.text = "Score: " + count.ToString();
     }
 }
